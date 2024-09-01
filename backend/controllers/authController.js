@@ -5,17 +5,14 @@ import bcrypt from "bcryptjs";
 export async function signup(req, res) {
   try {
     const { fullname, username, password, email } = req.body;
-
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(400).json({ error: "Username is already taken." });
     }
-
     const existingMail = await User.findOne({ email });
     if (existingMail) {
       return res.status(400).json({ error: "Email address is already used." });
     }
-
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -30,9 +27,7 @@ export async function signup(req, res) {
       generateTokenAndSetCookie(newUser._id, res);
       await newUser.save();
       const userToSend = newUser.toObject();
-
       delete userToSend.password;
-
       return res.status(201).json({
         message: "User has been created successfully",
         newUser: userToSend,
