@@ -92,12 +92,13 @@ export function logout(req, res) {
   }
 }
 
-
-export function getMe(req , res ) {
+export function getMe(req, res) {
   try {
-    return res.status(201).json({message : "This is your details" ,  user : req.user});
+    return res
+      .status(201)
+      .json({ message: "This is your details", user: req.user });
   } catch (error) {
     console.log("Error in getMe controller");
-    return res.status.json({message : "Internal Server Error" ,  error})
+    return res.status.json({ message: "Internal Server Error", error });
   }
 }

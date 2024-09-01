@@ -93,7 +93,7 @@ export async function updateUser(req, res) {
   const userId = req.user._id;
 
   try {
-    let  user = await User.findById(userId);
+    let user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
     // if (
     //   (!newPassword && currentPassword) ||
@@ -117,7 +117,7 @@ export async function updateUser(req, res) {
     user.email = email || user.email;
     user.bio = bio || user.bio;
     user.link = link || user.link;
-    
+
     user = await user.save();
     user.password = null;
     return res.status(200).json(user);

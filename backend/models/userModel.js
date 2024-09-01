@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose, { mongo, Mongoose } from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
@@ -38,9 +38,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    likedPost: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
+        default: [],
+      },
+    ],
   },
   { timestamps: true }
 );
 
-
- export const User = mongoose.model("User" , userSchema);
+export const User = mongoose.model("User", userSchema);

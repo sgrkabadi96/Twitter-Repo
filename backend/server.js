@@ -5,6 +5,7 @@ import morgan from "morgan";
 
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
+import postRouter from "./routes/postRouter.js";
 
 import connecToDb from "./db/db.js";
 
@@ -22,6 +23,7 @@ app.use(morgan("dev"));
 // Define routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api/posts", postRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT :: ${PORT}`);
